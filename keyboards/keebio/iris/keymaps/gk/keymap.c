@@ -11,8 +11,8 @@
 #define ARRW 4
 #define MEDI 5
 #define NUMS 6
-#define EMPT 100
-#define X_CODE 100
+#define EMPT 7
+#define X_CODE 8
 
 
 // layer selectors
@@ -52,13 +52,13 @@
 #define _FIND    LGUI(KC_F)
 
 // CMD+TAB and CMD+SHIFT+TAB definitions
-enum macro_keycodes {
-    KC_GUI_TAB,
+enum custom_keycodes {
+    KC_GUI_TAB = SAFE_RANGE,
     KC_GUI_SHIFT_TAB
 };
 
-#define GUI_TAB  M(KC_GUI_TAB)  // Macro for Alt-Tab
-#define G_S_TAB  M(KC_GUI_SHIFT_TAB)
+#define GUI_TAB  MO(KC_GUI_TAB)  // Macro for Alt-Tab
+#define G_S_TAB  MO(KC_GUI_SHIFT_TAB)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Base (QWERTY) Layer [BASE] active by default
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   */
   [BASE] = LAYOUT(
-    KC_GESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
+    QK_GESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
     KC_TAB,   _L1_Q,   KC_W,    _E,      _R,      KC_T,                                KC_Y,    _U,      _I,      KC_O,    _L1_P,   KC_EQL,
     KC_CAPS,  _L4_A,   _S,      _D,      _F,      KC_G,                                KC_H,    _J,      _K,      _L,      KC_SCLN, KC_QUOT,
     KC_TILD,  _L2_Z,   KC_X,    KC_C,    KC_V,    KC_B,    KC_ENT,           KC_SPACE, KC_N,    KC_M,    KC_COMM, KC_DOT, _L2_SLA,  KC_BSLS,
@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
     |   F1   |   F2   |   F3   |   F4   |   F5   |   F6   |                          |   F7   |   F8   |   F9   |   F10  |   F11  |   F12  |
     ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-    |        |        |        |        |        |        |                          |   F1   |   F2   |   F3   |   F4   |        | RESET  |
+    |        |        |        |        |        |        |                          |   F1   |   F2   |   F3   |   F4   |        | QK_BOOT  |
     ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
     |        |        |        |        |        |        |                          |   F5   |   F6   |   F7   |   F8   |        |        |
     ├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   */
   [FNKC] = LAYOUT(
     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                               KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
-    _______, _______, _______, _______, _______, _______,                             KC_F1,   KC_F2,   KC_F3,   KC_F4,   _______, RESET,
+    _______, _______, _______, _______, _______, _______,                             KC_F1,   KC_F2,   KC_F3,   KC_F4,   _______, QK_BOOT,
     _______, _______, _______, _______, _______, _______,                             KC_F5,   KC_F6,   KC_F7,   KC_F8,   _______, _______,
     _______, _______, _______, _______, _______, _______, _______,           _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______,
                                         _______, _______, _______,           _______, _______, _______
@@ -122,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
     _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
                                         _______, _______, _______,           _______, _______, _______
-  )
+  ),
 
   /* Coding Layer [CODE] active by holding Z or /
     ┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
@@ -141,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
     KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC,                            KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_MINS, KC_PLUS,
-    _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
                                         _______, _______, _______,          _______, _______, _______
   ),
 
@@ -221,7 +221,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    |        |        |        |                 |        |        |        |
                                    └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   */
-  [EMPTY] = LAYOUT(
+  [EMPT] = LAYOUT(
     _______, _______, _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
@@ -231,13 +231,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
-
-    switch (id) {
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch(keycode) {
         case KC_GUI_TAB:
-            return (record->event.pressed ? MACRO( D(LGUI), D(TAB), END ) : MACRO( U(TAB), END ));
+            if (record->event.pressed) {
+                register_code(KC_LGUI);
+                register_code(KC_TAB);
+            } else {
+                unregister_code(KC_TAB);
+            }
+            return false;
         case KC_GUI_SHIFT_TAB:
-            return (record->event.pressed ? MACRO( D(LGUI), D(LSFT), D(TAB), END ) : MACRO( U(TAB), END ));
+            if (record->event.pressed) {
+                register_code(KC_LGUI);
+                register_code(KC_LSFT);
+                register_code(KC_TAB);
+
+            } else {
+                unregister_code(KC_TAB);
+            }
+            return false;
     }
-    return MACRO_NONE;
+    return true;
 }
