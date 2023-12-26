@@ -14,7 +14,6 @@
 #define EMPT 7
 #define X_CODE 8
 
-
 // layer selectors
 #define _L1_Q    LT(FNKC, KC_Q)
 #define _L1_P    LT(FNKC, KC_P)
@@ -26,7 +25,6 @@
 #define _L7_DEL  LT(NUMS, KC_DEL)
 #define _L4_A    LT(ARRW, KC_A)
 #define _L5_FN   TT(MEDI)
-#define L_ONAN   MO(ONAN)
 #define L_NUMS   MO(NUMS)
 
 //tap-mod
@@ -55,12 +53,51 @@
 
 // CMD+TAB and CMD+SHIFT+TAB definitions
 enum custom_keycodes {
-    KC_GUI_TAB = SAFE_RANGE,
-    KC_GUI_SHIFT_TAB
+    CMD_TAB = SAFE_RANGE,
+    SCM_TAB,
+    L_ONAN
 };
 
-#define GUI_TAB  MO(KC_GUI_TAB)  // Macro for Alt-Tab
-#define G_S_TAB  MO(KC_GUI_SHIFT_TAB)
+bool cmd_tab_active = false;
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case L_ONAN:
+      if (record->event.pressed) {
+        layer_on(ONAN);
+      } else {
+        layer_off(ONAN);
+        if (cmd_tab_active) {
+            cmd_tab_active = false;
+            unregister_code(KC_LCMD);
+        }
+      }
+      break;
+    case CMD_TAB:
+      if (record->event.pressed) {
+        cmd_tab_active = true;
+        register_code(KC_LCMD);
+        register_code(KC_TAB);
+      } else {
+        unregister_code(KC_TAB);
+      }
+      break;
+    case SCM_TAB:
+      if (record->event.pressed) {
+        cmd_tab_active = true;
+        register_code(KC_LCMD);
+        register_code(KC_LSFT);
+        register_code(KC_TAB);
+      } else {
+        unregister_code(KC_LSFT);
+        unregister_code(KC_TAB);
+      }
+      break;
+      default:
+        return true;
+  }
+  return true;
+}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Base (QWERTY) Layer [BASE] active by default
@@ -162,7 +199,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   */
   [ONAN] = LAYOUT(
     _______, _______, _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
-    _______, _CMD_Q,  _CMD_W,  G_S_TAB, GUI_TAB, _______,                             _______, _______, _______, _______, _______, _______,
+    _______, _CMD_Q,  _CMD_W,  SCM_TAB, CMD_TAB, _______,                             _______, _______, _______, _______, _______, _______,
     _______, _ALL,    _SAVE,   _OPEN,   _FIND,   _______,                             _______, _______, _______, _______, _______, _______,
     _______, _UNDO,   _CUT,    _COPY,   _PASTE,  _______, _______,           _______, _______, _______, _______, _______, _______, _______,
                                         _______, _______, _______,           _______, _______, _______
@@ -233,26 +270,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch(keycode) {
-        case KC_GUI_TAB:
-            if (record->event.pressed) {
-                register_code(KC_LGUI);
-                register_code(KC_TAB);
-            } else {
-                unregister_code(KC_TAB);
-            }
-            return false;
-        case KC_GUI_SHIFT_TAB:
-            if (record->event.pressed) {
-                register_code(KC_LGUI);
-                register_code(KC_LSFT);
-                register_code(KC_TAB);
-
-            } else {
-                unregister_code(KC_TAB);
-            }
-            return false;
-    }
-    return true;
-}
