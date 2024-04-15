@@ -51,9 +51,6 @@ enum custom_keycodes {
     KC_GUI_SHIFT_TAB
 };
 
-#define GUI_TAB  MO(KC_GUI_TAB)  // Macro for Alt-Tab
-#define G_S_TAB  MO(KC_GUI_SHIFT_TAB)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* Base (QWERTY) Layer [BASE] active by default
