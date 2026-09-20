@@ -16,12 +16,12 @@ Files:
 - [config.h](keyboards/dz60/keymaps/60_ansi_gk/config.h)
 - [readme.md](keyboards/dz60/keymaps/60_ansi_gk/readme.md)
 
-## Keebio Iris rev7
+## Keebio Iris rev6
 
 Build:
 
 ```sh
-qmk compile -kb keebio/iris/rev7 -km gk
+qmk compile -kb keebio/iris/rev6 -km gk
 ```
 
 Files:
@@ -54,6 +54,6 @@ No local toolchain needed; same targets, `keyboard:keymap` syntax:
 
 ```sh
 util/docker_build.sh dz60:60_ansi_gk
-util/docker_build.sh keebio/iris/rev7:gk
+util/docker_build.sh keebio/iris/rev6:gk
 util/docker_build.sh splitkb/aurora/sweep/rev1:gk CONVERT_TO=sparkfun_pm2040
 ```
