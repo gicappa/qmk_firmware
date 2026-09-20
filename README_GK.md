@@ -34,13 +34,26 @@ Files:
 Build for SparkFun Pro Micro RP2040 controllers:
 
 ```sh
-qmk compile -c -kb splitkb/aurora/sweep/rev1 -km default -e CONVERT_TO=sparkfun_pm2040
+qmk compile -c -kb splitkb/aurora/sweep/rev1 -km gk -e CONVERT_TO=sparkfun_pm2040
 ```
+
+Swap `CONVERT_TO` for another target in `platforms/chibios/converters/` if the
+halves use a different Pro Micro replacement (Elite-Pi, RP2040 CE, Liatris, ...).
 
 Files:
 
-- [keymap.json](keyboards/splitkb/aurora/sweep/keymaps/default/keymap.json)
-- [config.h](keyboards/splitkb/aurora/sweep/keymaps/default/config.h)
-- [readme.md](keyboards/splitkb/aurora/sweep/keymaps/default/readme.md)
+- [keymap.json](keyboards/splitkb/aurora/sweep/keymaps/gk/keymap.json)
+- [config.h](keyboards/splitkb/aurora/sweep/keymaps/gk/config.h)
+- [readme.md](keyboards/splitkb/aurora/sweep/keymaps/gk/readme.md)
 - [keyboard info.json](keyboards/splitkb/aurora/sweep/info.json)
 - [rev1 config.h](keyboards/splitkb/aurora/sweep/rev1/config.h)
+
+## Docker builds
+
+No local toolchain needed; same targets, `keyboard:keymap` syntax:
+
+```sh
+util/docker_build.sh dz60:60_ansi_gk
+util/docker_build.sh keebio/iris/rev7:gk
+util/docker_build.sh splitkb/aurora/sweep/rev1:gk CONVERT_TO=sparkfun_pm2040
+```
