@@ -113,8 +113,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         QK_GESC,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                   KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,
         KC_TAB,   _L1_Q,    KC_W,     _E,       _R,       KC_T,                   KC_Y,     _U,       _I,       KC_O,     _L1_P,    KC_EQL,
         KC_CAPS,  _L4_A,    _S,       _D,       _F,       KC_G,                   KC_H,     _J,       _K,       _L,       KC_SCLN,  KC_QUOT,
-        L_NUMS,   _L2_Z,    KC_X,     KC_C,     KC_V,     KC_B,     KC_SPACE,     KC_SPACE, KC_N,     KC_M,     KC_COMM,  KC_DOT,   _L2_SLA,  _L8_BSLS,
-                                                L_ONAN,  KC_DEL,   KC_SPACE,     KC_SPACE, KC_BSPC,   L_ONAN),
+        L_NUMS,   _L2_Z,    KC_X,     KC_C,     KC_V,     KC_B,     KC_DEL,     KC_SPACE, KC_N,     KC_M,     KC_COMM,  KC_DOT,   _L2_SLA,  _L8_BSLS,
+                                                KC_SPACE, L_ONAN,   KC_DEL,     KC_SPACE, KC_BSPC,  L_ONAN),
 
     /* Numbers layer [NUMS] active by holding ENTER
       ┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
@@ -170,9 +170,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                      └────────┴────────┴────────┘                 └────────┴────────┴────────┘
     */
     [ONAN] = LAYOUT(
-        _______, _______, _______, _______, _______, _______,              _______, _______, _______, _______, _______, _______,
-        _______, _CMD_Q,  _CMD_W,  SCM_TAB, CMD_TAB, _______,              _______, _______, _______, _______, _______, _______,
-        _______, _ALL,    _SAVE,   _OPEN,   _FIND,   _______,              _______, _______, _______, _______, KC_BSPC, KC_ENT,
+        _______, _______, _______, _______, _______, _______,                       _______, _______, _______, _______, _______, _______,
+        _______, _CMD_Q,  _CMD_W,  SCM_TAB, CMD_TAB, _______,                       _______, _______, _______, _______, _______, _______,
+        _______, _ALL,    _SAVE,   _OPEN,   _FIND,   _______,                       _______, _______, _______, _______, KC_BSPC, KC_ENT,
         _______, _UNDO,   _CUT,    _COPY,   _PASTE,  _______, _______,     _______, _______, _______, _______, KC_DEL, KC_DEL, _______,
                                             _______, _______, _______,     _______, _______, _______),
 
@@ -190,9 +190,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                      └────────┴────────┴────────┘                 └────────┴────────┴────────┘
     */
     [FNKC] = LAYOUT(
-        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
-        _______, _______, _______, _______, _______, _______,              KC_F1,   KC_F2,   KC_F3,   KC_F4,   _______, QK_BOOT,
-        _______, _______, _______, _______, _______, _______,              KC_F5,   KC_F6,   KC_F7,   KC_F8,   _______, _______,
+        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                         KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
+        _______, _______, _______, _______, _______, _______,                       KC_F1,   KC_F2,   KC_F3,   KC_F4,   _______, QK_BOOT,
+        _______, _______, _______, _______, _______, _______,                       KC_F5,   KC_F6,   KC_F7,   KC_F8,   _______, _______,
         _______, _______, _______, _______, _______, _______, _______,     _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______,
                                             _______, _______, _______,     _______, _______, _______),
 
